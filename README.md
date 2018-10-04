@@ -1,5 +1,6 @@
-# skill_learn
-技术学习过程中实现的小项目
+### weixin_gzh
+
+抓取微信公众号历史文章，直接修改配置运行即可
 
 ### scrapylearn
 
