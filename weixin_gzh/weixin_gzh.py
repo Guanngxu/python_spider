@@ -68,14 +68,15 @@ class WXSpider:
         result_list[0].click()
 
     def __get_article_list(self):
-        # 等待文章列表加载
-        time.sleep(5)
-        total_page = self.driver.find_element_by_class_name("search_article_result")\
-            .find_element_by_class_name("js_article_pagebar").find_element_by_class_name("page_nav_area")\
-            .find_element_by_class_name("page_num")\
-            .find_elements_by_tag_name("label")[1].text
-        total_page = int(total_page)
-        articles = []
+    # 等待文章列表加载
+    time.sleep(5)
+    total_page = self.driver.find_element_by_class_name("search_article_result")\
+        .find_element_by_class_name("js_article_pagebar").find_element_by_class_name("page_nav_area")\
+        .find_element_by_class_name("page_num")\
+        .find_elements_by_tag_name("label")[1].text
+    total_page = int(total_page)
+    articles = []
+    try:
         for i in range(0, total_page-1):
             time.sleep(5)
             next_page = self.driver.find_element_by_class_name("search_article_result")\
@@ -92,6 +93,11 @@ class WXSpider:
                 articles.append(article_info)
             next_page.click()
         return articles
+    except Exception as e:
+        print(articles)
+        print(e)
+        print("当前页面" + str(i))
+        return articles
 
     def crawl_gzh(self):
         self.__open_gzh()
@@ -106,5 +112,3 @@ if __name__ == '__main__':
     wx_spider = WXSpider()
     articles = wx_spider.crawl_gzh()
     print(articles)
-    # a = "https://mp.weixin.qq.com/cgi-bin/home?t=home/index&lang=zh_CN&token=891725425".index("token")
-    # print("https://mp.weixin.qq.com/cgi-bin/home?t=home/index&lang=zh_CN&token=891725425"[a:])
