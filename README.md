@@ -1,6 +1,12 @@
 ### weixin_gzh
 
-抓取微信公众号历史文章，直接修改配置运行即可
+```
+weixin_gzh
+    抓取微信公众号历史文章，直接修改配置运行即可
+
+html_to_pdf
+    将网页截屏，转换成 pdf 文件
+```
 
 ### scrapylearn
 
